@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-center">
+  <div class="col-lg-5 col-md-8 col-10">
+      <nav>
+          <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *appUserRole="[ Role.Admin, Role.SuperAdmin]">ADMIN</a>
+          <a routerLink="/question/list" routerLinkActive="active" *appAuthUser>QUESTIONS</a>
+          <a routerLink="/profile" routerLinkActive="active" *appUserRole="[Role.User]">PROFILE</a>
+          <!-- <a (click)="loginAsUser()" routerLinkActive="active">LOGINASUSER</a>
+          <a (click)="loginAsAdmin()" routerLinkActive="active">LOGINASADMIN</a> -->
+          <a (click)="logout()" routerLinkActive="active" *appAuthUser>LOGOUT</a>
+          <hr>
+      </nav>
+  </div>
+</div>
+<router-outlet></router-outlet>

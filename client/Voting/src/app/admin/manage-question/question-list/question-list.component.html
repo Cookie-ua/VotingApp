@@ -1,0 +1,34 @@
+<div class="mt-3">
+    <h4 class="mb-4">Manage question</h4>
+    <div class="mb-4">
+        <button class="btn btn-primary btn-block" routerLink="../add">Add</button>
+    </div>
+    <div *ngFor="let question of pageResult?.items | paginate: { itemsPerPage: 10, currentPage: pageResult?.pageIndex, totalItems: pageResult?.count }" class="text-body">
+        <div class="d-flex flex-row justify-content-between align-items-center mb-4 "
+             [ngClass]="isExpired(question) ? 'alert alert-secondary' : question.isActive === null ? 'alert alert-warning' : question.isActive ? 'alert alert-success' : 'alert alert-danger'">
+            <div class="pr-4">
+                <div class="h6"
+                    style="cursor: pointer;"
+                    [routerLink]="['../', question.id]">
+                    {{question.title}}
+                </div>
+                <div class="text-body">{{question.description.length <= 175 ? question.description : (question.description | slice:0:175) + '...'}}</div>
+            </div>
+            <div style="cursor: pointer;">
+                <svg *ngIf="isExpired(question)" width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
+                    <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+                <svg *ngIf="!question.isActive && !isExpired(question)" (click)="changeQuestionStatus(question, Status.Unblock)" width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-lock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.5 8h-7a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1zm-7-1a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-7zm0-3a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                </svg>
+                <svg *ngIf="question.isActive && !isExpired(question)" (click)="changeQuestionStatus(question, Status.Block)" width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-unlock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                </svg>
+            </div>
+        </div> 
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="pageResult">
+        <pagination-controls class="pagination" (pageChange)="onPageChange($event)" previousLabel="" nextLabel=""></pagination-controls>
+    </div>
+</div>

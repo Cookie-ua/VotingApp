@@ -1,0 +1,10 @@
+<div class="mt-3">
+    <h4 class="mb-4">All my comments</h4>
+    <hr>
+    <div *ngFor="let comment of comments">
+        <div [ngClass]="comment.isBlocked ? 'alert alert-danger' : 'alert alert-success'"
+             [routerLink]="['/question', comment.questionId]">
+            {{comment.message}}
+        </div>
+    </div>
+</div>

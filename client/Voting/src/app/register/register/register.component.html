@@ -1,0 +1,13 @@
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-3 col-md-8 col-10">
+        <p class="h4 mb-4 text-center">Sign up</p>
+        <hr>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <input type="email" class="form-control mb-4" placeholder="Email" formControlName="email">
+            <input type="password" class="form-control mb-4" placeholder="Password" formControlName="password">
+            <input type="password" class="form-control mb-4" placeholder="Confirm password" formControlName="confirmPassword">
+
+            <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
+        </form>
+    </div>
+</div>

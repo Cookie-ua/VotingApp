@@ -1,0 +1,10 @@
+<div class="mt-3">
+    <div *ngFor="let vote of votes">
+        <!-- <div [ngClass]="vote.voted ? 'alert alert-success' : 'alert alert-warning'">
+            {{vote.voted ? 'Yes' : 'No'}} - {{vote.questionTitle}}
+        </div> -->
+        <div class="alert alert-secondary">
+            {{vote.answer}} - {{vote.questionTitle}}
+        </div>
+    </div>
+</div>

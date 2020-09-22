@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center mt-4 mb-4">
+    <div class="col-lg-5 col-md-8 col-10">
+        <h3 class="h3 mb-4">Create question</h3>
+        <hr>
+        <form [formGroup]="addQuestionForm" (ngSubmit)="addQuestion()">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" formControlName="title">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" rows="3" formControlName="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Answers</label>
+                <hr>
+                <div formArrayName="answers">
+                    <div class="form-group" *ngFor="let item of addQuestionForm.controls['answers']['controls']; let i = index">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" formControlName="{{i}}" placeholder="Answer">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">
+                                    <svg (click)="deleteAnswerInput(i)" width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" (click)="addAnswerInput()" class="btn btn-secondary btn-sm">Add answer</button>
+            </div>
+            <div class="form-group">
+                <label>Expiration date</label>
+                <hr />
+                <div class="row">
+                    <div class="col">
+                        <label>Days</label>
+                        <select class="form-control" formControlName="days">
+                            <option *ngFor="let day of days" value="{{day}}">{{day}}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label>Hours</label>
+                        <select class="form-control" formControlName="hours">
+                            <option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label>Minutes</label>
+                        <select class="form-control" formControlName="minutes">
+                            <option *ngFor="let minute of minutes" value="{{minute}}">{{minute}}</option>
+                        </select>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-2">Create</button>
+        </form>
+    </div>
+</div>
+

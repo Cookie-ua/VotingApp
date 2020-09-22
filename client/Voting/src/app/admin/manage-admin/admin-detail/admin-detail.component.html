@@ -1,0 +1,24 @@
+<div class="mt-3">
+    <h4 class="mb-4">{{user?.userName}}</h4>
+    <button class="btn btn-primary mr-2"  (click)="makeUser()">
+        Make user
+    </button>
+    <button class="btn"
+            [ngClass]="user?.isBlocked ? 'btn-danger' : 'btn-success'"
+            (click)="changeAdminStatus(user, user?.isBlocked ? Status.Unblock : Status.Block )">
+        {{user?.isBlocked ? 'Unblock' : 'Block'}}
+    </button>
+    <hr>
+    <h5 class="mb-4">Reset password</h5>
+    <form [formGroup]="resetPasswordForm" (ngSubmit)="resetPassword()">
+        <div class="form-group">
+            <label>New password</label>
+            <input type="password" class="form-control" formControlName="password">   
+        </div>
+        <div class="form-group">
+            <label>Confirm password</label>
+            <input type="password" class="form-control" formControlName="confirmPassword">   
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="!resetPasswordForm.valid">Reset</button>
+    </form>
+</div>

@@ -1,0 +1,8 @@
+<div class="mt-3">
+    <div *ngFor="let question of questions">
+        <div class="alert"
+            [ngClass]="question.isActive === null ? 'alert-warning' : question.isActive ? 'alert-success' : 'alert-danger'">
+            {{question.title}}
+        </div>
+    </div>
+</div>

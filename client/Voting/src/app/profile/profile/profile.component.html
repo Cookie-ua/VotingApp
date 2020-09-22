@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center mt-4 mb-4">
+    <div class="col-lg-5 col-md-8 col-10">
+        <h3 class="mb-3">Profile</h3>
+        <hr>
+        <nav>
+            <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">MAIN</a>
+            <a routerLink="./my-questions" routerLinkActive="active">QUESTIONS</a>
+            <a routerLink="./my-comments" routerLinkActive="active">COMMENTS</a>
+            <a routerLink="./my-votes" routerLinkActive="active">VOTES</a>
+            <!-- <a routerLink="./" routerLinkActive="active">PASSWORD</a>
+            <a routerLink="./" routerLinkActive="active">DELETE</a> -->
+        </nav>
+        <hr>
+        <router-outlet></router-outlet>
+    </div>
+</div>
